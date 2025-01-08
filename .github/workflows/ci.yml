@@ -4,9 +4,21 @@ on:
   workflow_dispatch:
 
 jobs:
+  
   run-with-terratest:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
+        with:
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": true
+              }
+            }            
+
       - name: Checkout code and install go lang
         uses: actions/checkout@v4
 
