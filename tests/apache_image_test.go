@@ -20,7 +20,8 @@ var _ = Describe("Check apache variables and volume into the container", func() 
 
 		// Build the Docker image
 		buildOptions = &docker.BuildOptions{
-			Tags: []string{tag},
+			Tags:          []string{tag},
+			Architectures: []string{"linux/amd64", "linux/arm64"},
 		}
 		docker.Build(GinkgoT(), "../images/docker_apache/", buildOptions)
 
@@ -62,7 +63,8 @@ var _ = Describe("Check apache variables and volume into the container", func() 
 			It("the 'html' volume should be present on container ", func() {
 				tag := "apache_volume_test"
 				buildOptions := &docker.BuildOptions{
-					Tags: []string{tag},
+					Tags:          []string{tag},
+					Architectures: []string{"linux/amd64", "linux/arm64"},
 				}
 				docker.Build(GinkgoT(), "../images/docker_apache/", buildOptions)
 				opts := &docker.RunOptions{Command: []string{"ls", "/var/www/html"}}

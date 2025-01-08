@@ -16,7 +16,8 @@ var _ = Describe("Check network connection with Python image", func() {
 	BeforeEach(func() {
 		tag = "undistrotest/docker_python_test"
 		buildOptions = &docker.BuildOptions{
-			Tags: []string{tag},
+			Tags:          []string{tag},
+			Architectures: []string{"linux/amd64", "linux/arm64"},
 		}
 
 		docker.Build(GinkgoT(), "../images/docker_python", buildOptions)
