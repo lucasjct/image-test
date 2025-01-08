@@ -1,0 +1,17 @@
+name: "image test"  
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-with-httpexpect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code and install go lang
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+      - run: go version  
+
+      - name: run tests with terratest
+        run: make image-test
