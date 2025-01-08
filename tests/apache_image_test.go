@@ -56,7 +56,6 @@ var _ = Describe("Check apache variables and volume into the container", func() 
 				assert.Contains(GinkgoT(), output, expectedValue, key, expectedValue)
 
 			}
-
 		})
 
 		Context("When running the container to check the volume created", func() {
@@ -66,7 +65,6 @@ var _ = Describe("Check apache variables and volume into the container", func() 
 					Tags: []string{tag},
 				}
 				docker.Build(GinkgoT(), "../images/docker_apache/", buildOptions)
-
 				opts := &docker.RunOptions{Command: []string{"ls", "/var/www/html"}}
 				output := docker.Run(GinkgoT(), tag, opts)
 				Expect("index.html").To(Equal(output))
